@@ -6,12 +6,6 @@
     <title>PyScript input&output</title>
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-      <style>
-        body {
-          max-width: 100%;
-          overflow-x: hidden;
-        }
-      </style>
   </head>
   <body>
  
@@ -20,7 +14,11 @@
       <div>
         <h1> 데이터 입력 및 손실함수 산출 프로그램 </h1>
         <p></p>
+
+        <h2> 시간이 조금 걸립니다. '전송' 버튼이 활성화될 때까지 기다려주세요. </h2>
+        <p></p>
         <h2> 데이터 값 입력 </h2>
+        
         <input id = "data_1_x" type="text" placeholder="data 1 x">
         <input id = "data_1_y" type="text" placeholder="data 1 y"><br>
         <input id = "data_2_x" type="text" placeholder="data 2 x">
@@ -43,9 +41,9 @@
         <button py-click="make_list"> 전송 </button>
 
         <h2> x값 list </h2>
-        <h2 id = "output_x"> </h2>
+        <h3 id = "output_x"> </h3>
         <h2> y값 list </h2>
-        <h2 id = "output_y"> </h2>
+        <h3 id = "output_y"> </h3>
         
         <h3 id = "testnumber"> </h3>
         <h2 id = "text_type"></h2>
@@ -57,7 +55,7 @@
         
 
         <h2 id = "loss_func"></h2>
-        <h3 id = "test_sympy"></h3>
+        <h3 id = "test_sympy"> 손실함수 및 산점도 시각화 : 제작중.   제작 : 차민경(http://cha8.ap-northeast-2.elasticbeanstalk.com) </h3>
 
 
       </div>
