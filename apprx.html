@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PyScript input&output</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+      .inputs {
+        height : 45px;
+        width : 170px;
+        font-size: 35px;
+      }
+      .hyper{
+        text-decoration: underline;
+        font-weight: bold;
+        font-size : 20px;
+      }
+      .notice{
+        color : crimson;
+        font-weight: bold;
+        font-size : 16px;
+      }
+      .from{
+        color : navy;
+        font-weight : bold;
+        font-size : 18px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+ 
+    <main class = "container">
+      
+        <div>
+            <h1> 정적분을 이용하여 나뭇잎 넓이 구하기 </h1>
+            <p></p>
+
+            <h3 class="notice"> 시간이 조금 걸립니다. '전송' 버튼이 활성화될 때까지 기다려주세요. </h3>
+            
+            <a href = "http://cha8.ap-northeast-2.elasticbeanstalk.com/" class = "hyper" target="_blank"> <h3 class="from"> (출처 바로가기) 차민경 페이지 </h3> </a>
+            <p></p>
+            <h2> 1. 꼭짓점 입력 </h2>
+            <h4> 아래와 같이, 나뭇잎의 줄기를 x축으로 하여 나뭇잎 윤곽을 지나는 6개 점의 좌표(정수)를 아래에 입력하세요. </h4>
+            <img src = "leaf.png"><br>
+            <input id = "data_1_x" class = "inputs" type="text" placeholder="점1 x값">
+            <input id = "data_1_y" class = "inputs" type="text" placeholder="점1 y값"><br>
+            <input id = "data_2_x" class = "inputs" type="text" placeholder="점2 x값">
+            <input id = "data_2_y" class = "inputs" type="text" placeholder="점2 y값"><br>
+            <input id = "data_3_x" class = "inputs" type="text" placeholder="점3 x값">
+            <input id = "data_3_y" class = "inputs" type="text" placeholder="점3 y값"><br>
+            <input id = "data_4_x" class = "inputs" type="text" placeholder="점4 x값">
+            <input id = "data_4_y" class = "inputs" type="text" placeholder="점4 y값"><br>
+            <input id = "data_5_x" class = "inputs" type="text" placeholder="점5 x값">
+            <input id = "data_5_y" class = "inputs" type="text" placeholder="점5 y값"><br>
+            <input id = "data_6_x" class = "inputs" type="text" placeholder="점6 x값">
+            <input id = "data_6_y" class = "inputs" type="text" placeholder="점6 y값"><br>        
+
+            <br>
+            <button py-click="point"> 전송 </button>
+
+            <h2> 2. 꼭짓점 좌표 </h2>
+            <h3 id = "output_x"> </h3>
+
+        </div> 
+
+        <div>
+            <h2 style="display: inline-block; vertical-align: middle;"> 3. 근사함수(3차 다항함수)</h2>
+            <button py-click="poly3" style="display: inline-block; vertical-align: middle;">산출</button>
+            
+    
+            <h2 id = "app_func"></h2>    
+    
+        </div>
+
+        <div>
+            <h2 style="display: inline-block; vertical-align: middle;"> 4. 정적분으로 넓이 어림값 구하기 </h2><br>
+            <input id = "x_inf" class = "inputs" type="text" placeholder="아래끝">
+            <input id = "x_sup" class = "inputs" type="text" placeholder="위끝">
+            <button py-click="area" style="display: inline-block; vertical-align: middle;">산출</button><br>
+            
+            <h2> 정적분 값 :  </h2> 
+            <h2 id = "val_def_intg" style="display: inline-block; vertical-align: middle;"></h2>  
+
+        </div>
+
+      
+
+
+      
+
+    </main>    
+    <script type = "py" src = "./approx.py" config = "./pyscript.json"></script>
+  </body>
+</html>
