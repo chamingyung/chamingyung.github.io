@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PyScript input&output</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+      .maintitle{
+            font-size: 36px;
+            font-weight : bold;
+        }
+        .inputs {
+          height : 45px;
+          width : 170px;
+          font-size: 35px;
+        }
+        .hyper{
+          text-decoration: underline;
+          font-weight: bold;
+          font-size : 20px;
+        }
+        .notice{
+          color : crimson;
+          font-weight: bold;
+          font-size : 16px;
+        }
+        .content{
+          color : black;
+          font-weight: bold;
+          font-size : 18px;
+          padding:10px;
+        }
+        .from{
+          color : navy;
+          font-weight : bold;
+          font-size : 18px;
+          text-align: right;
+        }
+        .title{
+            color : navy;
+            font-weight: bold;
+        }
+    </style>
+  </head>
+  <body>
+ 
+    <main class = "container">
+      
+      <div>
+        <h1 class="maintitle"> 손실함수 산출 프로그램(제작중) </h1>
+        <p></p>
+
+        <h2 class="notice"> 시간이 조금 걸립니다. '전송' 버튼이 활성화될 때까지 기다려주세요. </h2>
+        <p></p>
+        <a href = "http://cha8.ap-northeast-2.elasticbeanstalk.com/detail-aimath/65b62ac5698cdf7636873c5a" class = "hyper" target="_blank"> <h3 class="from"> (출처 바로가기) 차민경 페이지 </h3> </a>
+    <p></p>
+        <h2 class = 'title'> 1. 데이터 값 입력 </h2>
+        
+        <input id = "data_1_x" class = "inputs" type="text" placeholder="data 1 x">
+        <input id = "data_1_y" class = "inputs" type="text" placeholder="data 1 y"><br>
+        <input id = "data_2_x" class = "inputs" type="text" placeholder="data 2 x">
+        <input id = "data_2_y" class = "inputs" type="text" placeholder="data 2 y"><br>
+        <input id = "data_3_x" class = "inputs" type="text" placeholder="data 3 x">
+        <input id = "data_3_y" class = "inputs" type="text" placeholder="data 3 y"><br>
+        <input id = "data_4_x" class = "inputs" type="text" placeholder="data 4 x">
+        <input id = "data_4_y" class = "inputs" type="text" placeholder="data 4 y"><br>
+        <input id = "data_5_x" class = "inputs" type="text" placeholder="data 5 x">
+        <input id = "data_5_y" class = "inputs" type="text" placeholder="data 5 y"><br>
+        <input id = "data_6_x" class = "inputs" type="text" placeholder="data 6 x">
+        <input id = "data_6_y" class = "inputs" type="text" placeholder="data 6 y"><br>
+
+        
+
+        <br>
+        <button py-click="make_list"> 전송 </button>
+
+        <h2 class="title"> 2. x값 list </h2>
+        <h3 id = "output_x" class = 'content'> </h3>
+        <h2 class="title"> 3. y값 list </h2>
+        <h3 id = "output_y" class = 'content'> </h3>
+        
+        <h3 id = "testnumber"> </h3>
+        <h2 id = "text_type"></h2>
+
+      </div> 
+      <div>
+        <h2 class = 'title' style="display: inline-block; vertical-align: middle;"> 4. 손실함수</h2>
+        <button py-click="make_loss_func" >산출</button>
+        
+
+        <h2 class = 'content' > y = </h2> <h2 class= 'content' id = "loss_func" style="display: inline-block; vertical-align: middle;"></h2>
+        <h3 id = "test_sympy" class="title"> 5. 손실함수 및 산점도 시각화 : 제작중.  ___ 제작,저작권 : chamingyung@outlook.com </h3>
+
+      </div>
+    </main>    
+    <script type = "py" src = "./loss-func.py" config = "./pyscript.json"></script>
+  </body>
+</html>
