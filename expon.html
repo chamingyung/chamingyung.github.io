@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+        .maintitle{
+            font-size: 36px;
+            font-weight : bold;
+        }
+        .inputs {
+          height : 45px;
+          width : 170px;
+          font-size: 35px;
+        }
+        .hyper{
+          text-decoration: underline;
+          font-weight: bold;
+          font-size : 20px;
+        }
+        .notice{
+          color : crimson;
+          font-weight: bold;
+          font-size : 16px;
+        }
+        .content{
+          color : black;
+          font-weight: bold;
+          font-size : 18px;
+          padding:10px;
+        }
+        .from{
+          color : navy;
+          font-weight : bold;
+          font-size : 18px;
+          text-align: right;
+        }
+        .title{
+            color : navy;
+            font-weight: bold;
+        }
+      </style>
+</head>
+<body>
+
+    <h1 class = 'maintitle'> 실생활 속 지수함수(beta)</h1>
+    <p></p>
+
+    <h3 class="notice"> 시간이 조금 걸립니다. '전송' 버튼이 활성화될 때까지 기다려주세요. </h3>
+    
+    <a href = "http://cha8.ap-northeast-2.elasticbeanstalk.com/detail-high/65b8f7b99e4a3359db129cc7" class = "hyper" target="_blank"> <h3 class="from"> (출처 바로가기) 차민경 페이지 </h3> </a>
+    <h3 class = 'from'> 제작,저작권: chamingyung@outlook.com</h3>
+    <p></p>
+
+    <div>
+        <h2 class = 'title'> 1. 데이터 입력 </h2>
+        <h4> </h4>
+        <input id = "data_1_x" type = 'number' class = 'inputs' placeholder="x1">
+        <input id = "data_1_y" type = 'number' class = 'inputs' placeholder="y1"><br>
+        <input id = "data_2_x" type = 'number' class = 'inputs' placeholder="x2">
+        <input id = "data_2_y" type = 'number' class = 'inputs' placeholder="y2"><br>
+        <input id = "data_3_x" type = 'number' class = 'inputs' placeholder="x3">
+        <input id = "data_3_y" type = 'number' class = 'inputs' placeholder="y3"><br>
+        <input id = "data_4_x" type = 'number' class = 'inputs' placeholder="x4">
+        <input id = "data_4_y" type = 'number' class = 'inputs' placeholder="y4"><br>
+        <input id = "data_5_x" type = 'number' class = 'inputs' placeholder="x5">
+        <input id = "data_5_y" type = 'number' class = 'inputs' placeholder="y5"><br>
+        <input id = "data_6_x" type = 'number' class = 'inputs' placeholder="x6">
+        <input id = "data_6_y" type = 'number' class = 'inputs' placeholder="y6"><br>
+        <input id = "data_7_x" type = 'number' class = 'inputs' placeholder="x7">
+        <input id = "data_7_y" type = 'number' class = 'inputs' placeholder="y7"><br>
+        <input id = "data_7_x" type = 'number' class = 'inputs' placeholder="x8">
+        <input id = "data_7_y" type = 'number' class = 'inputs' placeholder="y8"><br>
+        
+        
+        
+        <p></p>
+        <button py-click="point" type="button" class="btn btn-secondary">  전송  </button>
+        <h4 class = 'content' id = 'result1' style="display: inline-block; vertical-align: middle;" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;"></h4>
+
+    </div>
+    <div>
+        <h2 class = 'title'> 2. 산점도 출력 </h2>
+        <h5 class="content" >화면 하단으로 스크롤을 내리면 산점도가 보입니다. </h5>
+        <button py-click="plot_1" type="button" style="display: inline-block; vertical-align: middle;" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;">산출</button>
+        
+        
+    </div>
+    <div>
+        <h2 class= 'title'> 3. 지수함수 근사 </h2>
+        <h4 class="content" style="display: inline-block; vertical-align: middle;"> 밑이 2.717... 인 지수함수 y = A * (2.717...)^x + B 꼴로 근사됩니다. </h4>
+        <button py-click="exp_func" type="button" class="btn btn-secondary" >산출</button><br>
+        <h4 class = 'content' style="display: inline-block; vertical-align: middle;" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;">A :  </h4>
+        <h4 id = 'result_coeff_a' style="display: inline-block; vertical-align: middle;" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;"> </h4>
+        <h4 class = 'content' style="display: inline-block; vertical-align: middle;" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;">B :  </h4>
+        <h4 id = 'result_coeff_b' style="display: inline-block; vertical-align: middle;" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;"> </h4>
+    </div>
+    <div>
+        <h2 class = 'title'> 4. 산점도와 지수함수 근사 그래프 출력 </h2>
+        <button py-click="plot_2" type="button" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;">산출</button>
+
+        
+    </div>
+
+    
+    <script type = "py" src = "./expon.py" config = "./pyscript.json"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
