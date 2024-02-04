@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+  }
+  .nav {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    background : black;
+    color : white;
+  }
+  .nav a {
+    margin-right: 10px;
+  }
+  .logo {
+    font-weight: bold;
+    color : inherit;
+    text-decoration : none;
+  }
+
+a {
+    color : inherit;
+    text-decoration : none;
+}
+
+button {
+    margin-left : 20px;
+}
+
+
+textarea {
+    width: 100%; /* 브라우저 창의 너비에 맞추기 위해 100%로 설정 */
+    box-sizing: border-box; /* padding과 border를 포함하여 전체 너비 계산 */
+}
+
+.title {
+    background: white;
+    margin : 20px;
+    border-radius: 5px;
+    font-weight: bold;
+
+}
+
+.category {
+    
+    font-weight : bold;
+    font-size : 20px;
+    margin : 20px;
+    border-radius: 5px;
+    text-align: left;
+}
+.right {
+    background: #eed;
+    margin : 20px;
+    border-radius: 5px;
+    text-align: right;
+    font-weight : bold;
+    
+}
+.grey-bg {
+    background : #eed;
+}
+
+.grey-bg {
+    background : #eed;
+}
+
+
+
+.white-bg {
+    background: white;
+    margin : 20px;
+    border-radius: 5px;
+    color : inherit;
+    text-decoration : none;
+}
+
+
+
+.grey_small { 
+    font-size : 12px;
+    color : grey;
+    text-decoration : none;
+}
+
+.list-box{
+    padding : 10px;
+    border-bottom: 1px solid#eee;
+    color : inherit;
+    text-decoration : none;
+}
+
+.list-box h4 {
+    font-size : 16px;
+    margin : 5px;
+
+}
+
+.list-box p {
+    font-size: 13px;
+    margin : 5px;
+    color : grey;
+
+}
+
+input, div {
+    box-sizing : border-box;
+}
+.form-box {
+    background: white;
+    padding : 25px;
+    margin : 20px;
+    border-radius: 8px;
+}
+
+.form-box [type = "checkbox"] {
+    
+    width: 30px;
+    background-color: aqua;
+}
+
+.form-box input {
+    padding : 10px;
+    font-size : 16px;
+    width : 100%;
+    border : 1px solid black;
+    border-radius : 5px;
+    margin-bottom : 10px;
+}
+
+
+
+#exb{
+    width : 5px;
+    background-color: blue;
+}
+
+.form-box button {
+    padding : 10px;
+    border : none;
+    background: lightgrey;
+    border-radius: 5px;
+}
+
+.detail-bg {
+    background: white;
+    padding : 15px;
+    margin-top : 10px;
+}
