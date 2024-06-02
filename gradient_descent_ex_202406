@@ -1,0 +1,128 @@
+### data1.csv : Make a csv file including the data given below. And eliminate them in this code file. (Move data from this file to csv file.) Make sure the csv file and ipynb file be in the same folder.
+
+time,credit
+0.4,10
+1.3,9
+2.1,13
+2.2,24
+2.4,22
+3.2,30
+3.5,41
+4.3,48
+4.6,36
+5,59
+5.3,61
+5.9,71
+6.1,62
+6.1,68
+6.2,60
+6.9,63
+7.3,75
+8.1,85
+8.5,91
+10,100
+
+### gradient_descent.ipynb
+
+## ---ln[1]
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+data_set = pd.read_csv('data1.csv')
+
+X = data_set.iloc[:, :-1].values
+y = data_set.iloc[:, -1].values
+
+## ---ln[2]
+xlist = []
+for x in X :
+    x = float(x)
+    xlist.append(x)
+
+ylist = []
+for y_ in y :
+    ylist.append(y_)
+
+#xlist, ylist
+
+
+## ---ln[3]
+import sympy as sy
+x = sy.symbols('x')
+a=0
+for x_, y_ in zip(xlist, ylist) :
+    a += (y_ - x*x_)**2
+a = a / len(xlist)
+
+loss_func = sy.expand(a)
+print('loss_func:', loss_func)
+
+c2 = loss_func.coeff(x,2)
+c1 = loss_func.coeff(x,1)
+c0 = loss_func.coeff(x,0)
+
+## ---ln[4]
+# 모드 구현 : 경사하강법 없이 그냥 손실함수와 산점도만 보고 싶으면 ‘yet’을,
+# 경사하강법 시뮬레이션을 시작하려면 ‘s’를 입력하면 되도록 모드 구현
+mode = input("""Input 'yet' to see the Loss Func Graph and Data ScatterPlot,
+or Input 's' to start GRADIENT DESCENT """)
+# 하다가 잘 안되면 chamingyung@outlook.com 으로 문의바랍니다.
+if mode == 'yet' :
+    plt.subplot(121)
+    x = np.array(range(-7,20))
+    plt.plot(x, c2*x**2 + c1*x + c0, color='green', label='Loss Func')
+    plt.title("Loss Func")
+    plt.xlabel("m")
+    plt.ylabel("Loss")
+
+    plt.subplot(122)
+    plt.scatter(X, y, color='blue', label='scatter')
+    x = np.array(range(-5,25))
+    plt.title("ScatterPlot and TrendLine")
+    plt.legend()
+    plt.show()
+
+elif mode =='s' :
+
+    opp = 20
+    alist = []
+    curr_points = []
+
+    while opp > 0 :
+      m=input("Input the value m of the Loss Function L(m) : ")
+      if m == 'q' :
+        break
+      else :
+        m = float(m)
+        alist.append(m)
+
+        plt.subplot(121)
+        x = np.array(range(-7, 25))
+        for m in alist :
+          plt.plot([m-0.5, m+0.5], [c2*m**2+(c1-c2)*m -0.5*c1 +c0,c2*m**2+(c1+c2)*m+c0+0.5*c1], color='blue')
+        mlist = [alist[-1]]
+        x = np. array(mlist)
+        plt.scatter(x, c2*x**2 + c1*x + c0, color='red', label = 'curr')
+        curr_points.append([x, c2*x**2+c1*x + c0])
+        x = np.array(range(-5,25))
+        plt.plot(x, c2*x**2 + c1*x + c0, color='green', label='Loss Func')
+        if opp <= 19 :
+            for a in range(0, len(curr_points)-1) :
+                plt.plot([curr_points[a][0], curr_points[a+1][0]],[curr_points[a][1], curr_points[a+1][1]], color='orange')
+        opp -= 1
+        plt.title("Loss Func")
+        plt.xlabel("m")
+        plt.ylabel("Loss")
+
+        plt.subplot(122)
+        x = np.array(range(0,30))
+        x1 = xlist[0]
+        y1 = ylist=[0]
+        plt.plot(x, m*x+ y1 - m*x1, label='mx+b', color = 'red')
+        plt.scatter(X, y, color='blue', label='scatter')
+        plt.title("ScatterPlot and TrendLine")
+
+        plt.legend()
+        plt.show()
+
