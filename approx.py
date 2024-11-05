@@ -45,7 +45,7 @@ def poly3(event) :
     plt.pyplot.scatter(x_array, y_array, color='blue')
 
     app_func = document.querySelector("#app_func")
-    app_func.innerText = func
+    app_func.innerText = "f(x)="&func
 
     return func
 
