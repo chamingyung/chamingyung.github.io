@@ -47,7 +47,7 @@ def poly3(event) :
     app_func = document.querySelector("#app_func")
     app_func.innerText = "f(x)="&func
 
-    return "f(x)="&func
+    return func
 
 def area(event) : 
     global func
