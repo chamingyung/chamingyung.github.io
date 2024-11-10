@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PyScript input&output</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <style>
+      .maintitle{
+            font-size: 36px;
+            font-weight : bold;
+        }
+        .inputs {
+          height : 45px;
+          width : 170px;
+          font-size: 35px;
+        }
+        .hyper{
+          text-decoration: underline;
+          font-weight: bold;
+          font-size : 20px;
+        }
+        .notice{
+          color : crimson;
+          font-weight: bold;
+          font-size : 16px;
+        }
+        .content{
+          color : black;
+          font-weight: bold;
+          font-size : 18px;
+          padding:10px;
+        }
+        .from{
+          color : navy;
+          font-weight : bold;
+          font-size : 18px;
+          text-align: right;
+        }
+        .title{
+            color : navy;
+            font-weight: bold;
+        }
+        .nav {
+          display: flex;
+          padding: 15px;
+          align-items: center;
+          background : black;
+          color : white;
+        }
+        .nav a {
+          margin-right: 10px;
+        }
+        .logo {
+          font-weight: bold;
+          color : inherit;
+          text-decoration : none;        
+        }
+        #home {
+          color : white;
+          text-decoration : none;
+        }
+    </style>
+  </head>
+  <body>
+    <div class = 'nav'>
+      <a class = 'logo'> 🐧차펭귄 학교수학 </a>
+      <a href="http://cha8.ap-northeast-2.elasticbeanstalk.com/" id='home'> Home </a>
+      <a> Login </a>
+    </div>
+ 
+    <main class = "container">
+      
+        <div>
+            <h1 class = "maintitle"> 실생활 데이터로부터 이차함수 식 구하기 </h1>
+            <p></p>
+          
+            <a href = "http://cha8.ap-northeast-2.elasticbeanstalk.com/" class = "hyper" target="_blank"> <h3 class="from"> 제작 : 차민경 </h3> </a>
+            <p></p>
+            <h2 class = "title"> 1. 테두리 상의 점 좌표 입력 </h2>
+            <h4 class="content"> 이차함수 식을 얻고자 하는 곡선 상의 점의 좌표를 6개 입력하세요.  </h4>
+            <img src = "leaf.png"><br>
+            <input id = "data_1_x" class = "inputs" type="text" placeholder="점1 x값">
+            <input id = "data_1_y" class = "inputs" type="text" placeholder="점1 y값"><br>
+            <input id = "data_2_x" class = "inputs" type="text" placeholder="점2 x값">
+            <input id = "data_2_y" class = "inputs" type="text" placeholder="점2 y값"><br>
+            <input id = "data_3_x" class = "inputs" type="text" placeholder="점3 x값">
+            <input id = "data_3_y" class = "inputs" type="text" placeholder="점3 y값"><br>
+            <input id = "data_4_x" class = "inputs" type="text" placeholder="점4 x값">
+            <input id = "data_4_y" class = "inputs" type="text" placeholder="점4 y값"><br>
+            <input id = "data_5_x" class = "inputs" type="text" placeholder="점5 x값">
+            <input id = "data_5_y" class = "inputs" type="text" placeholder="점5 y값"><br>
+            <input id = "data_6_x" class = "inputs" type="text" placeholder="점6 x값">
+            <input id = "data_6_y" class = "inputs" type="text" placeholder="점6 y값"><br>        
+
+            <!-- <button py-click="point"> 입력 완료 </button> -->
+
+            <button py-click="point" type="button" class="btn btn-secondary">  입력 완료  </button>
+            <p></p>
+            <h2 class="title"> 2. 입력된 점 좌표 확인 </h2>
+            <h3 id = "output_x"> </h3>
+
+        </div> 
+        <p></p>
+        <div>
+            <h2 style="display: inline-block; vertical-align: middle;" class="title"> 3. 근사함수(이차함수) </h2>
+            <h4 class="content"> 위에서 구한 점들을 가장 가까이 지나는 이차함수 식을 산출하는 과정입니다. 산출 버튼을 <b><u><font color="crimson">한 번만 </font></u></b> 누르세요. 산출 버튼을 누른 후 로딩 시간이 걸립니다. 인내심을 갖고 기다려주세요 </h4>
+            
+            <button py-click="poly3" type="button" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;">산출</button>
+            
+    
+            <br> <h4 class="content">함수 식 : </h4><h2 id = "app_func"></h2>    
+    
+        </div>
+
+        <div>
+            <h2 style="display: inline-block; vertical-align: middle;" class="title"> 4. 적분구간 입력 </h2><br>
+            <h4 class="content"> 적분구간의 아래끝, 위끝을 각각 입력 후 산출 버튼을 눌러주세요. 아래에 정적분 값이 출력됩니다.  </h4>
+            <input id = "x_inf" class = "inputs" type="text" placeholder="아래끝">
+            <input id = "x_sup" class = "inputs" type="text" placeholder="위끝">
+            <button py-click="area" type="button" class="btn btn-secondary" style="display: inline-block; vertical-align: middle;">산출</button><br>
+            <br><img src = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZf7Sl8iBzjt-A8iA9EMVnqklvT3A4adTOMv3mGQcMSu279GijZxO6IzGEKKsWxzju9zg1CT82RvyET6-VwrprpKCwVDYo539AVwkD_jxNi3yYRgzfo3YsfT0YqAgtmqg3nZE824qQ1hsfSzwyj_XGDpmjLTlGdSGnJVtRLsAE9p8nYUSStu6jdXvYq0is/w945-h600-p-k-no-nu/integral_img.PNG" width = "40%">
+            <span style = "content"> ← 정적분 코드 구현 부분 </span>
+            <p></p>
+      
+            <h2> 정적분 값 :  </h2> 
+            <h2 id = "val_def_intg" style="display: inline-block; vertical-align: middle;"></h2>  
+
+        </div>
+
+      
+
+
+      
+
+    </main>    
+    <script type = "py" src = "./approx.py" config = "./pyscript.json"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
