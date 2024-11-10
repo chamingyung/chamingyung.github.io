@@ -12,7 +12,7 @@ xlist = []
 ylist = []
 
 def point(event) : 
-    for i in range(1, 7):  # Assuming you have elements with IDs data_1_x, data_1_y, data_2_x, data_2_y
+    for i in range(1, 11):  # Assuming you have elements with IDs data_1_x, data_1_y, data_2_x, data_2_y
         data_x = document.querySelector("#data_" + str(i) + "_x")
         data_y = document.querySelector("#data_" + str(i) + "_y")
         data_x = float(data_x.value)
