@@ -1,0 +1,77 @@
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+# 이메일 발송 함수
+def send_email(subject, body, to_email, from_email, app_password):
+    msg = MIMEMultipart()
+    msg['From'] = from_email
+    msg['To'] = to_email
+    msg['Subject'] = subject
+
+    # MIMEText에 charset='utf-8' 추가
+    msg.attach(MIMEText(body, 'plain', 'utf-8'))
+
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(from_email, app_password)
+            server.send_message(msg)
+            print("이메일 전송 완료!")
+    except Exception as e:
+        print("이메일 전송 실패:", e)
+
+
+# 종목 리스트
+tickers = ['MSFT', 'QCOM', 'NVDA', 'AMD', 'AVGO', 'CRM', 'NOW', 'ADBE', 'PLTR', 'SNOW', 'ORCL', 'GOOGL', 'AAPL']
+
+# 이메일 정보
+FROM_EMAIL = "chamingyung1@gmail.com"
+TO_EMAIL = "chamingyung1@gmail.com"  # 본인에게 보내는 경우
+APP_PASSWORD = ""
+
+# 매수/매도 신호 저장
+cross_signals = []
+
+# 각 종목에 대해 골든크로스/데드크로스를 체크
+for ticker in tickers:
+    print(f" {ticker} data setting ...")
+
+    # 데이터 불러오기 (60일치, 일봉)
+    df = yf.download(ticker, period='60d', interval='1d', auto_adjust=True)
+    #print(df)
+
+    # 이동평균선 계산
+    df['MA5'] = df['Close'].rolling(window=5).mean()
+    df['MA20'] = df['Close'].rolling(window=20).mean()
+
+    # 골든크로스 / 데드크로스 판단
+    df['Signal'] = np.where(
+        (df['MA5'] > df['MA20']) & (df['MA5'].shift(1) <= df['MA20'].shift(1)), 1,       # 골든크로스
+        np.where(
+            (df['MA5'] < df['MA20']) & (df['MA5'].shift(1) >= df['MA20'].shift(1)), -1,  # 데드크로스
+            0                                                                            # 아무 신호 없음
+        )
+    )
+    print(df)
+
+    # 신호가 있으면 추가
+    if df['Signal'].iloc[-1] == 1:
+        cross_signals.append(f"Golden Cross at {ticker}! :-)")
+    elif df['Signal'].iloc[-1] == -1:
+        cross_signals.append(f"Death Cross at {ticker}! :-( ")
+
+# 크로스 신호가 없으면 "매수/매도 신호 없음"
+if len(cross_signals) == 0:
+    subject = "No signal today"
+    body = "No signal today."
+elif len(cross_signals) > 0 :
+    subject = "ALARM : Buy/Sell signal triggered! "
+    body = "\n".join(cross_signals)
+
+# 이메일 발송
+send_email(subject, body, TO_EMAIL, FROM_EMAIL, APP_PASSWORD)
